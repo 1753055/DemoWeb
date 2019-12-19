@@ -4,36 +4,29 @@ let app = express();
 //Set public static folder
 app.use(express.static(__dirname + '/public'));
 
-// //Use view engine
-// let expressHbs = require('express-handlebars');
-// let hbs = expressHbs.create({
-//     extname: 'hbs',
-//     defaultLayout: 'layout',
-//     layoutsDir: __dirname + '/views/layouts/',
-//     partialsDir: __dirname + '/views/partials/'
-// });
-// app.engine('hbs', hbs.engine);
-// app.set('view engine', 'hbs');
+//Use view engine
+let expressHbs = require('express-handlebars');
+let hbs = expressHbs.create({
+    extname: 'hbs',
+    defaultLayout: 'layout',
+    layoutsDir: __dirname + '/views/layouts/',
+    partialsDir: __dirname + '/views/partials/'
+});
+app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
 
 //Define your routes here 
-// app.get('/', (req, res) => {
-//     res.render('index');
-// });
+app.get('/', (req, res) => {
+    res.render('index');
+});
 
-// app.get('/:page', (req, res) => {
-//     let banners = {
-//         blog: 'Our Blog',
-//         cart: 'Shopping Cart',
-//         category: 'Shop Category',
-//         checkout: 'Product Checkout',
-//         confirmation: 'Order Confirmation',
-//         contact: 'Contact Us',
-//         login: 'Login / Register',
-//         register: 'Register'
-//     }
-//     let page = req.params.page;
-//     res.render(page, {banner: banners[page]});
-// });
+app.get('/:page', (req, res) => {
+    let banners = {
+        giohang: 'Giỏ hàng'
+    }
+    let page = req.params.page;
+    res.render(page, {banner: banners[page]});
+});
 
 //Set server port & start server
 app.set('port', process.env.PORT || 5000);
